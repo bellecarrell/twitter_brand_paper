@@ -1,0 +1,213 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[hyperref]{emnlp2018}
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{subfig}
+\usepackage[textsize=large]{todonotes}
+\usepackage{booktabs}
+\usepackage{adjustbox}
+\usepackage{algorithm}% http://ctan.org/pkg/algorithms
+\usepackage{algpseudocode}
+\usepackage[inline]{enumitem}
+\usepackage{amsmath,amssymb}
+\usepackage[font=small,skip=5pt]{caption}
+\usepackage{tabularx} % for 'tabularx' environment
+
+\usepackage{url}
+
+\newcommand{\note}[4][]{\todo[author=#2,color=#3,size=\scriptsize,fancyline,caption={},#1]{#4}} % default note
+\newcommand{\rvnote}[4][]{\todo[author=#2,color=#3,size=\scriptsize, caption={},#1]{#4}} % default note
+
+\newcommand{\adrian}[2][]{\note[#1]{adrian}{green}{#2}}
+\newcommand{\Adrian}[2][]{\adrian[inline,#1]{#2}\noindent}
+\newcommand{\dirk}[2][]{\note[#1]{dirk}{red}{#2}}
+\newcommand{\Dirk}[2][]{\dirk[inline,#1]{#2}\noindent}
+
+% i added 3 types of comments for myself,
+% because i need help organizing my brain
+
+% my general comments
+\newcommand{\ab}[2][]{\note[#1]{annabelle}{cyan}{#2}}
+\newcommand{\AB}[2][]{\ab[inline,#1]{#2}\noindent}
+
+% sw = still to write, which also means still to do,
+% so there's at least a draft of the sentence/section, or
+% sometimes also code to write, results to get, etc. 
+\newcommand{\sw}[2][]{\note[#1]{annabelle}{magenta!20}{#2}}
+\newcommand{\SW}[2][]{\sw[inline,#1]{#2}\noindent}
+
+% rv = revise. self-explanatory
+\newcommand{\rv}[2][]{\rvnote[#1]{annabelle}{blue!20}{#2}}
+\newcommand{\RV}[2][]{\rv[inline,#1]{#2}\noindent}
+
+\title{A Linguistic Study of Social Media Branding
+}
+
+\author{}
+
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+\pagestyle{empty}
+
+\begin{abstract}
+
+ \RV{rewrite abstract. address all concerns in by-sentence comments.} Having a prominent social media presence can bolster  or even lead to professional success. \rv{bolster? rewrite motivational sentence} As such, many social media users attempting to gain influence tailor their content to reflect a particular image in a process known as \emph{social media branding}. \rv{introduce branding, fewer words} In this paper we investigate what user activity contributes to a successful brand. To do this, we first build a dataset of comparable users and introduce a new metric for success to measure change in influence over time. \rv{put this here? leave it for just the intro?} We find that among comparable users those that tweet more about topics related to the particular brand achieve greater success name \rv{create a term for our new delta success?}. Furthermore, when casting the problem as regression (or classification) we find that adding topic information from an LDA improves performance.   \rv{Once hypotheses are done} \SW{RESULTS}
+
+
+\end{abstract}
+
+\section{Introduction}
+
+\RV{rewrite intro. address all concerns in by-sentence comments.} A notable phenomenon is how social media allows individuals to promote themselves professionally. \rv{examples, citations (from that new yorker article, elsewhere). this is new to NLP, so gotta explain a bit.} Social media sites provide users with influence a place for easy digital dissemination as well as direct profit sometimes.  A point of interest arises then: how does one become an influencer on social media?
+
+Previous work has investigated predicting success of individual messages as well as entire sets of user activity \rv{Add citations}, but, to the best of our knowledge, no work has looked into \emph{how} one can become successful. To address this research gap, we conduct a time series analysis of user activity on Twitter to determine what user activity may correlate with greater influence. Specifically, we attempt to answer the following research questions: (1) Does tweeting about topics related to one's desired image correlate with greater success? (2) Does effective branding differ based on how many followers one currently has? (3) Can more successful brands provide strategic insights for up-and-coming users? \SW{address all concerns/thoughts on directions for hypothesis. Will probably be one of the longest todos}  \AB{\emph{@Dirk}: These are the current working hypotheses we want to investigate. I'm wondering if marketing research has related theory to help support or refine these hypotheses. Specifically, is there branding research that would be applicable here? I think it's also interesting related to question \#2 to think about how branding strategy might differ based on how successful you already are.} 
+\Dirk{There is quite a bit of research that might be relevant here, I will dive into it and see whether we can pare it down a bit. One thing that might be good as related question is also whether influencers have a direct impact on their followers, and thereby on the brand they represent (in terms of monetary gain). Here, the brand and the influencer are the same, but the question might still be relevant. Another paper that came to mind is about Positioning Maps, which measure the follower overlap of a brand with certain exemplar accounts that represent some desired property. Maybe we can use that to define the personal brand as well.}
+\AB{Great! I was hoping there'd be relevant research. The hypothesis is pretty vague and broad at the moment, need to find something that can be addressed in a paper. I just Googled Positioning Maps, and they look very relevant. }
+We first build a dataset of Twitter users with different products as well as different number of followers to address our first two research questions. Then we collect all Tweets for the users weekly for X months and conduct a time series analysis. \RV{edit summary of rest of paper, probably going to be done a bunch} 
+
+Current hypotheses: compared to "competing products" (competing products being other users of the same self-defined class), tweets of users with high log change success (equation 2) \sw{test w/ experiments to see if topical differences exist, etc.} \begin{enumerate}
+    \item will have a topic distribution with greater mass on topics similar to the self-defined class
+    \item will have fewer topics at higher frequency (fewer modes)
+\end{enumerate} 
+
+individual tweets with high retweet/like success value will \begin{enumerate}
+    \item have LIWC features that are more "authentic" \sw{not sure what that'd be yet. just basing it off of initial internet searches}
+\end{enumerate}
+
+related to marketing research: homophily. talking about things related to brand linked to positive feedback from followers similar to brand?
+
+\section{Related Work}
+
+\SW{figure out which subsections to keep, based on hypothesis. only the first one (predicting success) is for sure going to stay}
+
+\subsection{Self-branding}
+
+What we do different: large-scale, across sectors/disciplines, computational approach to insights on strategy
+
+\subsection{Predicting Success on Social Media}
+There has been a lot of work in predicting success on social media at both the message (CITE) and user (CITE) levels. \SW{collect and add all known & relevant related work. tailor based on final hypothesis}
+
+\subsection{Marketing}
+
+\SW{collect and add all known & relevant related work. tailor based on final hypothesis}
+
+\subsection{Computational Branding Analytics}
+
+\SW{collect and add all known & relevant related work. tailor based on final hypothesis}
+
+\cite{wang-lin-kominek:2013:EMNLP} 
+
+\section{Comparable Users}
+
+\SW{figure out how to introduce stratification of users into follower/brand subsets.}
+
+In order to evaluate 
+
+\section{Brand and Product Definition}
+
+\SW{figure out where this goes.}
+
+“Broadly, a product is anything that can be offered to a market to satisfy a want or need, including physical goods, services, experiences, events, persons, places, properties, organizations, information, and ideas” (Kotler & Keller, 2015).
+
+In our case, the product is a person/individual of occupation X. Competing products then would be users of the same occupation in the same follower range.
+
+“A brand is a name, term, design, symbol, or any other feature that identifies one seller’s good or service as distinct from those of other sellers” (American Marketing Association).
+
+The brand is the person's distinct user activity on social media. 
+
+We will now provide our definition of a user's brand, which we employ when constructing and analyzing our dataset. We consider a user's brand to be a specific occupational role  
+
+\section{Success Definition}
+
+\SW{figure out where this goes.}
+
+We will begin with user success metric from \newcite{lampos-EtAl:2014:EACL}: \begin{equation}
+\textrm{S(}\phi_{in},\phi_{out},\phi_{\lambda}\textrm{)}\ =\ \textrm{ln}\Bigg(\frac{(\phi_{\lambda}\ +\ \theta)(\phi_{in}\ +\ \theta)^{2}}{\phi_{out}\ +\ \theta}\Bigg)    
+\end{equation}
+\(\phi_{in}\) is number of followers a user has, \(\phi_{out}\) is number of followees, and \(\phi_{\lambda}\) is number of lists the user appears on. \(\theta\) is a smoothing constant set to 1. The equation, as that paper notes, tries to get at a ratio of followers to followees while being sensitive to scaling so that 4/2 != 2/1. \ab{Clean up explanation etc. later}
+
+We modify the equation to account for the fact that we are measuring change between time intervals. As such our equation is as follows:
+\begin{equation}
+\textrm{S(}\varphi_{in},\varphi_{out},\varphi_{\lambda}\textrm{)}\ =\ \textrm{ln}\Bigg(\frac{(\varphi_{\lambda}\ +\ \theta)(\varphi_{in}\ +\ \theta)^{2}}{\varphi_{out}\ +\ \theta}\Bigg)    
+\end{equation}
+
+\(\varphi_{in}\) is the change in number of followers a user has, \(\varphi_{out}\) is the change of followees, and \(\varphi_{\lambda}\) is change of lists the user appears on.
+
+\section{Dataset}
+
+We first collected all users from the July 2018 1\% sample who include "blogger" in their description. From that, we manually inspected a subset of users and descriptions, identifying N topical groups: X, Y, Z. Figure 1 contains information about each subgroup.
+
+\subsection{step 1: get user IDs of occupations we care about}
+\begin{enumerate}
+    \item select occupational titles that could benefit from self-promotion from occupation taxonomy \rv{looks like occupations that self-promote are one of two categories: creators of exclusively social media content and creators of other things who promote their content on social media}
+    \item collect ids + counts for each occupation
+\end{enumerate}
+
+
+\SW{introduce dataset. must include user follower/brand partitions, total tweets, tweet like/retweet partitions, description of where the tweets are from, etc etc}
+
+Our dataset \(U\) contains \(N\) users for each combination of brand \(B\) and follower interval \(I_{f}\), for a total of \(Z\) users. \rv{i like the follower interval notation. rest of it, not so much. edit alongside brand/product and success definition changes} 
+
+\missingfigure[]{include tweet counts and other baseline dataset metrics}
+
+\subsection{User Selection and Preprocessing}
+
+\SW{describe user collection from 2017 jan and filtering based on activity, number of tweets, activation date, english (from most recent 3200 tweets?) in jan 2017}
+
+Our initial set of tweets \(T\) 
+We wanted to collect users who were active for each brand and follower interval  
+
+
+\subsection{tweet stratification}
+
+\SW{describe aggregating all tweets for follower/brand user subsection and partitioning based on like/retweet success metric}
+
+\section{hypothesis 1}
+
+\SW{experimental setup and results for: will have a topic distribution with greater mass on topics similar to the self-defined class}
+
+\subsection{method}
+
+\SW{using embeddings look at topic distribution, like in that "analysis of user occupational class" paper}
+
+\subsection{results}
+
+\missingfigure[]{a cool visualization of topic distributions, like in that "analysis of user occupational class" paper}
+
+\section{hypothesis 2}
+
+\SW{experimental setup and results for: will have fewer topics at higher frequency (fewer modes)}
+
+\subsection{method}
+
+\SW{using embeddings look at topic distribution, like in that "analysis of user occupational class" paper. similar to last one}
+
+\subsection{results}
+
+\missingfigure[]{perhaps same vis as hypothesis 1, but highlighting mode difference}
+
+\section{hypothesis 3}
+
+\SW{experimental setup and results for: have LIWC features that are more "authentic" }
+
+\subsection{method}
+
+\SW{like in that choi fake news paper, perhaps use multiple lexicons for analysis, in addition to LIWC}
+
+\subsection{results}
+
+\missingfigure[]{a cool table or visualization, like the choi paper, or the ad-hominem paper}
+
+\section{Conclusion}
+
+\SW{write some base version of this eventually; revise with abstract and hypothesis once results are in (or whatever book says to to)}
+
+\bibliography{references}
+\bibliographystyle{acl_natbib_nourl}
+
+\end{document}
